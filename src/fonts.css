@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'SFProDisplay-Regular';
+    src: url('../assets/fonts/sfprodisplay-regular.eot'); /* IE 9 Compatibility Mode */
+    src: url('../assets/fonts/sfprodisplay-regular.eot?#iefix') format('embedded-opentype'), /* IE < 9 */
+         url('../assets/fonts/sfprodisplay-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../assets/fonts/sfprodisplay-regular.woff') format('woff'), /* Modern Browsers */
+         url('../assets/fonts/sfprodisplay-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../assets/fonts/sfprodisplay-regular.svg#sfprodisplay-regular') format('svg'); /* Legacy iOS */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  

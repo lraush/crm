@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useGetCallsMutation } from "../redux/slice/api.slice";
 import incomingIcon from "../assets/incomingIcon.svg";
 import outgoingIcon from "../assets/outgoingIcon.svg";
 import AudioPlayer from "../components/AudioPlayer/AudioPlayer";
-import "./CallList.css";
+import "./CallList.css"; 
 
 const CallList = () => {
   const [getCalls, { data, isLoading, error }] = useGetCallsMutation();
-  console.log("data: ", data);
-
-  const getRandomRating = () => {
-    const ratings = ["Плохо", "Хорошо", "Отлично"];
-    return ratings[Math.floor(Math.random() * ratings.length)];
-  };
 
   useEffect(() => {
     getCalls({
@@ -22,92 +16,78 @@ const CallList = () => {
     });
   }, [getCalls]);
 
-  if (isLoading) return <p>Загрузка...</p>;
-  if (error) return <p>Ошибка загрузки</p>;
+  const getRandomRating = () => {
+    const ratings = ["Плохо", "Хорошо", "Отлично"];
+    return ratings[Math.floor(Math.random() * ratings.length)];
+  };
+
+  if (isLoading) return <p className="loading">Загрузка...</p>;
+  if (error) return <p className="error">Ошибка загрузки</p>;
 
   return (
-    <div className="crm-table">
-      <table
-        border={1}
-        cellPadding={8}
-        style={{ borderCollapse: "collapse", width: "100%" }}
-      >
-        <thead className="table">
-          <tr>
-            <th>Тип</th>
-            <th>Время</th>
-            <th>Сотрудник</th>
-            <th>Звонок</th>
-            <th>Источник</th>
-            <th>Оценка</th>
-            <th>Длительность</th>
+    <div className="call-list">
+      <table className="call-table">
+        <thead>
+          <tr >
+            <th className="table-title">Тип</th>
+            <th className="table-title">Время</th>
+            <th className="table-title">Сотрудник</th>
+            <th className="table-title">Звонок</th>
+            <th className="table-title">Источник</th>
+            <th className="table-title">Оценка</th>
+            <th className="table-title">Длительность</th>
           </tr>
         </thead>
         <tbody>
           {data?.results.map((call: any) => (
             <tr key={call.id}>
-              <td>
-                {call.in_out === 1 ? (
-                  <img
-                    src={incomingIcon}
-                    alt="Входящий звонок"
-                    width={16}
-                    height={16}
-                  />
-                ) : (
-                  <img
-                    src={outgoingIcon}
-                    alt="Исходящий звонок"
-                    width={16}
-                    height={16}
-                  />
-                )}
+              <td className="call-item">
+                <img
+                  src={call.in_out === 1 ? incomingIcon : outgoingIcon}
+                  alt={call.in_out === 1 ? "Входящий" : "Исходящий"}
+                  className="icon"
+                />
               </td>
-              <td>
+              <td className="call-item call-time">
                 {new Date(call.date).toLocaleTimeString("ru-RU", {
                   hour: "2-digit",
                   minute: "2-digit",
                   hour12: false,
                 })}
               </td>
-
-              <td>
+              <td className="call-item">
                 {call.person_avatar ? (
                   <img
                     src={call.person_avatar}
                     alt="Аватар"
-                    width={40}
-                    height={40}
-                    style={{ borderRadius: "50%" }}
+                    className="avatar"
                   />
                 ) : (
-                  <div
-                    style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: "50%",
-                      backgroundColor: "#ccc",
-                    }}
-                  />
+                  <div className="avatar placeholder" />
                 )}
               </td>
-              <td>{call.in_out === 1 ? call.from_number : call.to_number}</td>
-              <td>{call.line_name || ""}</td>
-              <td>
+              <td className="call-item">{call.in_out === 1 ? call.from_number : call.to_number}</td>
+              <td className="call-item">{call.line_name || ""}</td>
+              <td className="call-item">
                 {call.status === "Не дозвонился" ? "" : getRandomRating()}
               </td>
-              <td>
+              <td className="call-item">
                 {call.record && call.partnership_id ? (
                   <AudioPlayer
                     recordId={call.record}
-                    partnershipId={call.partnershipId}
-                    duration={`${String(Math.floor(call.time / 60)).padStart(2, "0")}:${String(call.time % 60).padStart(2, "0")}`}
+                    partnershipId={call.partnership_id}
+                    duration={`${String(Math.floor(call.time / 60)).padStart(
+                      2,
+                      "0"
+                    )}:${String(call.time % 60).padStart(2, "0")}`}
                   />
                 ) : (
-                  <span>{`${String(Math.floor(call.time / 60)).padStart(
-                    2,
-                    "0"
-                  )}:${String(call.time % 60).padStart(2, "0")}`}</span>
+                  <span className="duration">
+                    {`${String(Math.floor(call.time / 60)).padStart(
+                      2,
+                      "0"
+                    )}:${String(call.time % 60).padStart(2, "0")}`}
+                  </span>
                 )}
               </td>
             </tr>
