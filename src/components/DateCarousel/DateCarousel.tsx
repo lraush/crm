@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight} from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./DateCarousel.css";
 import calendarIcon from "../../assets/icon-calendar.svg";
 
@@ -9,8 +9,12 @@ const options = [
   { label: "Месяц", value: "month" },
   { label: "Год", value: "year" },
 ];
+interface DateCarouselProps {
+  period: string;
+  setPeriod: (value: string) => void;
+}
 
-export default function DateCarousel({ period, setPeriod }) {
+export default function DateCarousel({ period, setPeriod }: DateCarouselProps) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -24,7 +28,7 @@ export default function DateCarousel({ period, setPeriod }) {
   };
 
   useEffect(() => {
-    function handleClickOutside(event: { target: any; }) {
+    function handleClickOutside(event: { target: any }) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
