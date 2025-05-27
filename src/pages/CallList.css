@@ -1,18 +1,29 @@
-td, th {
-    text-align: center;
-    width: 8rem;
-    height: 2rem;
+.container {
+  padding-top: 30px;
+  width: 60rem;
+  margin: 0 auto;
+}
+.filters {
+  display: flex;
+  gap: 64%;
+  justify-content: flex-start;
+}
+
+td,
+th {
+  text-align: center;
+  width: 8rem;
+  height: 2rem;
 }
 .call-list {
   background-color: #ffffff;
-  width: 80rem;
+  width: 60rem;
   margin: 0 auto;
-  
-
+  border-radius: 8px;
 }
-.call-table{
-    margin: 0 auto;
-    border-collapse: collapse; 
+.call-table {
+  margin: 0 auto;
+  border-collapse: collapse;
 }
 .table-title {
   color: #5e7793;
@@ -22,12 +33,38 @@ td, th {
   height: 65px;
 }
 .call-item {
-    font-weight: 400;
-    font-style: normal;
-    font-size: 14px;
-    height: 65px;
-    border-top: 1px solid #EAF0FA;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 15px;
+  height: 65px;
+  border-top: 1px solid #eaf0fa;
 }
-.avatar{
-    width: 32px;
+.avatar {
+  width: 32px;
+}
+.pagination-container {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pagination-button {
+  padding: 2px 6px;
+  font-size: 14px;
+  background: none;
+  color: #007bff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pagination-button:hover:not(:disabled) {
+  color: #0056b3;
+}
+
+.pagination-button:disabled {
+  cursor: not-allowed;
 }

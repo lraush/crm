@@ -1,0 +1,69 @@
+.carousel {
+  display: flex;
+  align-items: center;
+  width: 204px;
+  position: relative;
+}
+
+.nav-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #adbfdf;
+  display: flex;
+  align-items: center;
+}
+.nav-button:hover {
+  color: #002cfb;
+}
+
+.date-selector {
+  position: relative;
+  background: none;
+  border: none;
+}
+
+.date-select-toggle {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  user-select: none;
+  color: #007bff;
+}
+
+.date-select-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #aaa;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: white;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  margin: 4px 0 0 0;
+  padding: 0;
+  list-style: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.date-select-option {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.date-select-option.selected {
+  color: #007bff;
+}
+.date-select-option:hover {
+  background-color: #dee4ff;
+}
