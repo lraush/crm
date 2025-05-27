@@ -68,3 +68,32 @@ th {
 .pagination-button:disabled {
   cursor: not-allowed;
 }
+
+.call-item .rating-badge {
+  display: inline-block;
+  padding: 7px 15px; 
+  border-radius: 4px;
+  font-size: 0.80rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.call-item .rating-badge.плохо {
+  border: 1px solid #ea1a4f;
+  background-color: #fee9ef;
+  font-size: 400;
+  color: #ea1a4f;
+  padding: 7px 23px;
+}
+
+.call-item .rating-badge.хорошо {
+  border: 1px solid #adbfdf;
+  background-color: #d8e4fb;
+  color: #122945;
+}
+
+.call-item .rating-badge.отлично {
+  border: 1px solid #28a879;
+  background-color: #dbf8ef;
+  color: #00A775;
+}

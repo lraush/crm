@@ -3,7 +3,9 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./DateCarousel.css";
 import calendarIcon from "../../assets/icon-calendar.svg";
 
-const options = [
+type Period = "3days" | "week" | "month" | "year";
+
+const options: { label: string; value: Period }[] = [
   { label: "3 дня", value: "3days" },
   { label: "Неделя", value: "week" },
   { label: "Месяц", value: "month" },
@@ -11,8 +13,8 @@ const options = [
 ];
 
 interface DateCarouselProps {
-  period: string;
-  setPeriod: (value: string) => void;
+  period: Period;
+  setPeriod: (value: Period) => void;
 }
 
 export default function DateCarousel({ period, setPeriod }: DateCarouselProps) {
@@ -42,7 +44,7 @@ export default function DateCarousel({ period, setPeriod }: DateCarouselProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const onSelect = (value: string) => {
+  const onSelect = (value: Period) => {
     setPeriod(value);
     setIsOpen(false);
   };
