@@ -118,7 +118,7 @@ const CallList = () => {
       default:
         ratingClass = "";
     }
-
+    console.log(ratingClass);
     return (
       <tr key={call.id}>
         <td className="call-item">
