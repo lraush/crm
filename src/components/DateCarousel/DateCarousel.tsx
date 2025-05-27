@@ -9,6 +9,7 @@ const options = [
   { label: "Месяц", value: "month" },
   { label: "Год", value: "year" },
 ];
+
 interface DateCarouselProps {
   period: string;
   setPeriod: (value: string) => void;
@@ -16,7 +17,7 @@ interface DateCarouselProps {
 
 export default function DateCarousel({ period, setPeriod }: DateCarouselProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const currentIndex = options.findIndex((opt) => opt.value === period);
 
@@ -28,8 +29,12 @@ export default function DateCarousel({ period, setPeriod }: DateCarouselProps) {
   };
 
   useEffect(() => {
-    function handleClickOutside(event: { target: any }) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        event.target instanceof Node &&
+        !dropdownRef.current.contains(event.target)
+      ) {
         setIsOpen(false);
       }
     }
@@ -37,7 +42,7 @@ export default function DateCarousel({ period, setPeriod }: DateCarouselProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const onSelect = (value) => {
+  const onSelect = (value: string) => {
     setPeriod(value);
     setIsOpen(false);
   };
@@ -48,6 +53,7 @@ export default function DateCarousel({ period, setPeriod }: DateCarouselProps) {
         onClick={() => handleArrowClick(-1)}
         className="nav-button"
         aria-label="Previous period"
+        disabled={currentIndex === 0}
       >
         <ChevronLeft size={20} />
       </button>
@@ -74,7 +80,7 @@ export default function DateCarousel({ period, setPeriod }: DateCarouselProps) {
                 aria-selected={period === value}
                 className={`date-select-option${period === value ? " selected" : ""}`}
                 onClick={() => onSelect(value)}
-                onKeyDown={(e) => {
+                onKeyDown={(e: React.KeyboardEvent<HTMLLIElement>) => {
                   if (e.key === "Enter" || e.key === " ") {
                     e.preventDefault();
                     onSelect(value);
@@ -92,6 +98,7 @@ export default function DateCarousel({ period, setPeriod }: DateCarouselProps) {
         onClick={() => handleArrowClick(1)}
         className="nav-button"
         aria-label="Next period"
+        disabled={currentIndex === options.length - 1}
       >
         <ChevronRight size={20} />
       </button>
