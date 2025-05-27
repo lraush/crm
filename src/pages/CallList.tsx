@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useGetCallsMutation } from "../redux/slice/api.slice";
 import incomingIcon from "../assets/incomingIcon.svg";
 import outgoingIcon from "../assets/outgoingIcon.svg";
@@ -142,9 +142,7 @@ const CallList = () => {
         <td className="call-item">{call.line_name || ""}</td>
         <td className="call-item">
           {rating && (
-            <span className={`rating-badge ${rating.toLowerCase()}`}>
-              {rating}
-            </span>
+            <span className={`rating-badge ${ratingClass}`}>{rating}</span>
           )}
         </td>
         <td className="call-item">

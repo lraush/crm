@@ -78,7 +78,7 @@ th {
   white-space: nowrap;
 }
 
-.call-item .rating-badge.плохо {
+.call-item .rating-badge.bad {
   border: 1px solid #ea1a4f;
   background-color: #fee9ef;
   font-size: 400;
@@ -86,13 +86,13 @@ th {
   padding: 7px 23px;
 }
 
-.call-item .rating-badge.хорошо {
+.call-item .rating-badge.good {
   border: 1px solid #adbfdf;
   background-color: #d8e4fb;
   color: #122945;
 }
 
-.call-item .rating-badge.отлично {
+.call-item .rating-badge.excellent {
   border: 1px solid #28a879;
   background-color: #dbf8ef;
   color: #00A775;
